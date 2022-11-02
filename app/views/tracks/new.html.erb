@@ -1,0 +1,15 @@
+<%= form_for @track , url: {action: :create} do |f| %>
+    <%= f.label :messeage, 'title' %>
+    <%= f.text_field :title %>
+    
+    <%= f.label :mp3, '音楽ファイル' %>
+    <%= f.file_field :mp3 %>
+    
+    <%= f.label :description, '説明' %>
+    <%= f.text_field :description %>
+    
+    <%= f.label :thumbnail, 'サムネイル' %>
+    <%= f.file_field :thumbnail %>
+    
+    <%= f.submit '登録' %>
+<% end %>
