@@ -25,4 +25,15 @@ class TracksController < ApplicationController
     track.destroy
     redirect_to tracks_path
   end
+  
+  
+  def get_image
+    track = Track.find(params[:id])
+    send_data track.thumbnail, disposition: :inline, type: 'image/png'
+  end
+  
+  def get_music
+    track = Track.find(params[:id])
+    send_data track.mp3, disposition: :inline,type: 'mp3'
+  end
 end
