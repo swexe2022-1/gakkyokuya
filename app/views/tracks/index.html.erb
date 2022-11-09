@@ -5,23 +5,16 @@
             
             <%= e.description %>
             
+            
+            
             <%# <%= link_to 'プレイリストに追加', new_playlist_path(product_id: e.id) %> %>
         </p>
     </br>
 <% end %>
-<p><%= link_to '新規作成', '/tracks/new' %></p>
 
-<%= begin %>
-    <p>
-        <% if session[:uid] %>
-            <%= link_to '新規追加', new_track_path %>
-        <% else %>
-            <%= link_to 'ログイン', top_main_path %>
-        <% end %>
-            <%= link_to 'ユーザー一覧', users_path %>
-    </p>
-<%= end %>
+<p>
+    <%= link_to '新規作成', new_track_path %>
+</p>
 
 
 
-<%# <%= link_to 'カート表示', carts_show_path %> %>
