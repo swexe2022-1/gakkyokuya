@@ -1,0 +1,7 @@
+<%= form_for @playlist , url: {action: :create} do |f| %>
+    <%= f.label :messeage, 'プレイリスト名' %>
+    <%= f.text_field :title %>
+    <%= f.label :thumbnail, 'サムネイル' %>
+    <%= f.file_field :thumbnail %>
+    <%= f.submit '登録' %>
+<% end %>

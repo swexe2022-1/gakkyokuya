@@ -1,4 +1,6 @@
 class Track < ApplicationRecord
+    has_many :belongings
+    has_many :playlists, through: :belongings, source: :playlist
     #belongs_to :user
     #belongs_to :playlist
     mount_uploader :mp3, AudiofileUploader

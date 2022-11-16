@@ -1,0 +1,31 @@
+
+    <br>
+        <p>
+
+            
+            <p> <%= image_tag "/get_image/#{@playlist.id}" %></p>
+
+            
+            <p>プレイリスト名：<%= @playlist.title %></p>
+            
+            <% @playlist.tracks.each do |t| %>
+                <p>ID: <%= t.id %></p>
+                <p>title: <%= t.title %></p>
+            <% end %>
+            
+
+            
+            <p>楽曲追加</p>
+            <%= form_tag "#{params[:id]}/add_track", method: :post do %>
+                <p>
+                    <%= label_tag :track_id, "楽曲ID"%>
+                    <%= number_field_tag :track_id %>
+                </p>
+                <%= submit_tag '追加' %>
+            <%end %>
+            
+            <br><%= link_to '削除', track_path(@playlist.id), method: :delete %></br>
+            
+            <%# <%= link_to 'プレイリストに追加', new_playlist_path(product_id: e.id) %>
+        </p>
+    </br>
