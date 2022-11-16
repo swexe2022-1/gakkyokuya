@@ -11,7 +11,7 @@ class TracksController < ApplicationController
   
   def create
     #user = User.find_by(uid: session[:uid])
-    @track = Track.new(title: params[:track][:title], mp3: params[:track][:mp3].read, description: params[:track][:description], thumbnail: params[:track][:thumbnail].read)
+    @track = Track.new(title: params[:track][:title], mp3: params[:track][:mp3], description: params[:track][:description], thumbnail: params[:track][:thumbnail].read)
 
     if @track.save
       redirect_to tracks_path
@@ -29,11 +29,11 @@ class TracksController < ApplicationController
   
   def get_image
     track = Track.find(params[:id])
-    send_data track.thumbnail, disposition: :inline, type: 'image/png'
+    send_data track.thumbnail, disposition: :inline, type: 'png'
   end
   
   def get_music
     track = Track.find(params[:id])
-    send_data track.mp3, disposition: :inline,type: 'mp3'
+    send_data track.mp3
   end
 end

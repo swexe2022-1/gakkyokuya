@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_081338) do
 
   create_table "tracks", force: :cascade do |t|
     t.string "title"
-    t.binary "mp3"
+    t.string "mp3"
     t.string "description"
     t.binary "thumbnail"
     t.datetime "created_at", null: false
