@@ -21,4 +21,13 @@ ActiveRecord::Schema.define(version: 2022_11_02_080216) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "tracks", force: :cascade do |t|
+    t.string "title"
+    t.string "mp3"
+    t.string "description"
+    t.binary "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
