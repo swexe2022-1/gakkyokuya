@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   
   resources :users, only: %i[show new create]
   resources :tracks 
+  resources :playlists
+  post 'playlists/:id/add_track',to:'playlists#add_track'
   
   get    '/signin',  to: 'users#new'
   post   '/signin',  to: 'users#create'
