@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && BCrypt::Password.new(user.password_digest) == params[:password]
       log_in(user.id)
-      redirect_to root_path
+      redirect_to user
     else
       render 'shared/error'
     end

@@ -1,9 +1,10 @@
-#require 'bcrypt'
 class TracksController < ApplicationController
+  before_action :logged_in, only: %i[new create destroy]
+  before_action :correct_user, only: %i[destroy]
+
   def index
     @tracks = Track.all
   end
-  
   
   def new
     @track = Track.new
@@ -15,11 +16,10 @@ class TracksController < ApplicationController
   end
   
   def create
-    #user = User.find_by(uid: session[:uid])
-    @track = Track.new(title: params[:track][:title], mp3: params[:track][:mp3], description: params[:track][:description], thumbnail: params[:track][:thumbnail]&.read)
+    @track = Track.new(user: current_user, title: params[:track][:title], mp3: params[:track][:mp3], description: params[:track][:description], thumbnail: params[:track][:thumbnail]&.read)
 
     if @track.save
-      redirect_to tracks_path
+      redirect_to current_user
     else
       render new_track_path
     end
@@ -39,5 +39,13 @@ class TracksController < ApplicationController
   def get_music
     track = Track.find(params[:id])
     send_data track.mp3
+  end
+  
+  private
+  
+  def correct_user
+    @track = current_user.tracks.find_by(id: params[:id])
+    
+    redirect_to root_path if @track.nil?
   end
 end

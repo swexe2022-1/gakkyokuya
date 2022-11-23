@@ -21,15 +21,17 @@ ActiveRecord::Schema.define(version: 2022_11_16_074627) do
   end
 
   create_table "playlists", force: :cascade do |t|
-    t.string "title"
+    t.integer "user_id", null: false
+    t.string "title", null: false
     t.binary "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tracks", force: :cascade do |t|
-    t.string "title"
-    t.string "mp3"
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.string "mp3", null: false
     t.string "description"
     t.binary "thumbnail"
     t.datetime "created_at", null: false
@@ -37,9 +39,9 @@ ActiveRecord::Schema.define(version: 2022_11_16_074627) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
