@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
-  
-  
+  before_action :logged_in, only: %i[new create add_track]
+  before_action :correct_user, only: %i[destroy]
+
   def index
     @playlists = Playlist.all
   end
@@ -14,8 +15,7 @@ class PlaylistsController < ApplicationController
   end
   
   def create
-    #user = User.find_by(uid: session[:uid])
-    @playlist = Playlist.new(title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail].read)
+    @playlist = Playlist.new(user: current_user, title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail].read)
 
     if @playlist.save
       redirect_to root_path
@@ -37,4 +37,11 @@ class PlaylistsController < ApplicationController
     send_data track.thumbnail, disposition: :inline, type: 'png'
   end
   
+  private
+  
+  def correct_user
+    @playlist = current_user.playlists.find_by(id: params[:id])
+    
+    redirect_to root_path if @playlist.nil?
+  end
 end
