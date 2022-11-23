@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :logged_in, only: %i[new create add_track destroy]
+  before_action :logged_in, only: %i[new create destroy]
   before_action :correct_user, only: %i[destroy]
 
   def index
