@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :users, only: %i[show new create]
   resources :tracks 
   resources :playlists
+  resources :belongings, only: %i[create] 
   post 'playlists/:id/add_track',to:'playlists#add_track'
+  post 'playlists/:id/remove_track',to:'playlists#remove_track'
   
   get    '/signin',  to: 'users#new'
   post   '/signin',  to: 'users#create'

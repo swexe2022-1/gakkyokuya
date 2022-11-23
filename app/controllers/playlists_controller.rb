@@ -7,6 +7,7 @@ class PlaylistsController < ApplicationController
   
   def show
     @playlist = Playlist.find(params[:id])
+    @tracks = Playlist.find(params[:id]).tracks
   end
   
   def new
@@ -37,4 +38,11 @@ class PlaylistsController < ApplicationController
     send_data track.thumbnail, disposition: :inline, type: 'png'
   end
   
+  def remove_track
+    playlist = Playlist.find(params[:id])
+    track = Track.find(params[:track_id])
+    
+    playlist.tracks.delete(track)
+    redirect_to playlist
+  end
 end

@@ -1,19 +1,11 @@
 <% @tracks.each do |e| %>
     <br>
         <p>
-
-            
             <p> <%= image_tag "/get_track_image/#{e.id}" %></p>
-            <audio src= "<%= "#{e.mp3}" %>" controls="">
-            <p>音声を再生するには、audioタグをサポートしたブラウザが必要です。</p>
-            </audio>
-            
             <p>楽曲名：<%= e.title %></p>
             <P>説明：<%= e.description %></P>
-            
+            <br><a href="/tracks/<%= e.id%>">詳細</a></br>
             <br><%= link_to '削除', track_path(e.id), method: :delete %></br>
-            
-            <%# <%= link_to 'プレイリストに追加', new_playlist_path(product_id: e.id) %>
         </p>
     </br>
 <% end %>

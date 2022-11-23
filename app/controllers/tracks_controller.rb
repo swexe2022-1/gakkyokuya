@@ -9,9 +9,14 @@ class TracksController < ApplicationController
     @track = Track.new
   end
   
+  def show
+    @track = Track.find(params[:id])
+    @playlists = Playlist.all
+  end
+  
   def create
     #user = User.find_by(uid: session[:uid])
-    @track = Track.new(title: params[:track][:title], mp3: params[:track][:mp3], description: params[:track][:description], thumbnail: params[:track][:thumbnail].read)
+    @track = Track.new(title: params[:track][:title], mp3: params[:track][:mp3], description: params[:track][:description], thumbnail: params[:track][:thumbnail]&.read)
 
     if @track.save
       redirect_to tracks_path

@@ -1,0 +1,26 @@
+
+<br>
+    <p>
+        <p> <%= image_tag "/get_track_image/#{@track.id}" %></p>
+        <audio src= "<%= "#{@track.mp3}" %>" controls="">
+        <p>音声を再生するには、audioタグをサポートしたブラウザが必要です。</p>
+        </audio>
+            
+        <p>楽曲名：<%= @track.title %></p>
+        <P>説明：<%= @track.description %></P>
+        <p>
+            プレイリストに追加：
+            <%= form_tag belongings_path, method: :post do %>
+                <%= hidden_field_tag :track_id, @track.id %>
+                <%= select_tag :playlist_id, options_from_collection_for_select(current_user.playlists, :id, :title), {include_blank: "プレイリストを選択"} %>
+                <%= submit_tag '登録' %>
+            <% end %>
+        </p>
+        <br><%= link_to '削除', track_path(@track.id), method: :delete %></br>
+    </p>
+</br>
+
+
+<p>
+    <%= link_to '新規作成', new_track_path %>
+</p>
