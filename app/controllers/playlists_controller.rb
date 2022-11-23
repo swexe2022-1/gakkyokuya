@@ -15,12 +15,12 @@ class PlaylistsController < ApplicationController
   end
   
   def create
-    @playlist = Playlist.new(user: current_user, title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail].read)
+    @playlist = Playlist.new(user: current_user, title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail]&.read)
 
     if @playlist.save
-      redirect_to root_path
+      redirect_to current_user
     else
-      render playlists_new_path
+      render new_playlist_path
     end
   end
   

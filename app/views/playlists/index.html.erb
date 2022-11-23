@@ -1,15 +1,9 @@
 <% @playlists.each do |e| %>
     <br>
         <p>
-
-            
             <p> <%= image_tag "/get_playlist_image/#{e.id}" %></p>
-            
             <p>プレイリスト名：<%= e.title %></p>
-            
             <br><%= link_to '削除', playlist_path(e.id), method: :delete %></br>
-            
-            <%# <%= link_to 'プレイリストに追加', new_playlist_path(product_id: e.id) %>
         </p>
     </br>
 <% end %>

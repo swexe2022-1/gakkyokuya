@@ -14,7 +14,7 @@ class TracksController < ApplicationController
     @track = Track.new(user: current_user, title: params[:track][:title], mp3: params[:track][:mp3], description: params[:track][:description], thumbnail: params[:track][:thumbnail]&.read)
 
     if @track.save
-      redirect_to tracks_path
+      redirect_to current_user
     else
       render new_track_path
     end
