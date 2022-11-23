@@ -26,8 +26,7 @@ class TracksController < ApplicationController
     redirect_to tracks_path
   end
   
-  
-  def get_image
+  def get_track_image
     track = Track.find(params[:id])
     send_data track.thumbnail, disposition: :inline, type: 'png'
   end

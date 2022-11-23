@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
-  get 'get_image/:id', to: 'tracks#get_image'
+  get 'get_track_image/:id', to: 'tracks#get_track_image'
+  get 'get_playlist_image/:id', to: 'playlists#get_playlist_image'
   get 'get_music/:id', to: 'tracks#get_music'
 end

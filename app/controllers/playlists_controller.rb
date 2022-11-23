@@ -3,7 +3,6 @@ class PlaylistsController < ApplicationController
   
   def index
     @playlists = Playlist.all
-    
   end
   
   def show
@@ -11,14 +10,14 @@ class PlaylistsController < ApplicationController
   end
   
   def new
-    @Playlist = Playlist.new
+    @playlist = Playlist.new
   end
   
   def create
     #user = User.find_by(uid: session[:uid])
-    @Playlist = Playlist.new(title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail].read)
+    @playlist = Playlist.new(title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail].read)
 
-    if @Playlist.save
+    if @playlist.save
       redirect_to root_path
     else
       render playlists_new_path
@@ -31,6 +30,11 @@ class PlaylistsController < ApplicationController
     
     playlist.tracks << track
     redirect_to playlist
+  end
+  
+  def get_playlist_image
+    track = Playlist.find(params[:id])
+    send_data track.thumbnail, disposition: :inline, type: 'png'
   end
   
 end
