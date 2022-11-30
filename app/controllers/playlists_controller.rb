@@ -19,6 +19,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(user: current_user, title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail]&.read)
 
     if @playlist.save
+      flash[:notice] = 'プレイリストを作成しました'
       redirect_to current_user
     else
       render new_playlist_path
@@ -47,6 +48,12 @@ class PlaylistsController < ApplicationController
   
   end
   
+  def destroy
+    playlist = Playlist.find(params[:id])
+    playlist.destroy
+    redirect_to playlists_path
+  end
+  
   private
   
   def correct_user
@@ -54,4 +61,6 @@ class PlaylistsController < ApplicationController
     
     redirect_to root_path if @playlist.nil?
   end
+
+
 end

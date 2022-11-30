@@ -35,7 +35,7 @@
                 <%= submit_tag '追加' %>
             <%end %>
             
-            <br><%= link_to '削除', track_path(@playlist.id), method: :delete %></br>
+            <br><%= link_to '削除', playlist_path(@playlist.id), method: :delete %></br>
             <%= button_to "戻る", { :action => "index" }, :method => "get" %>
         </p>
     </br>

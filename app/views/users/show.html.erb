@@ -1,5 +1,9 @@
 <h1> マイページ </h1>
 
+<% if flash[:notice] %>
+    messeage:<%= flash[:notice] %>
+<% end %>
+
 <p>名前：<%= @user.name  %></p>
 
 <h2> アップロード楽曲一覧 </h2>
@@ -16,11 +20,11 @@
                 <p>説明：<%= e.description %></p>
             <% end %>
             <br><%= link_to '削除', track_path(e.id), method: :delete %></br>
-            <%# <%= link_to 'プレイリストに追加', new_playlist_path(product_id: e.id) %>
+            
         </p>
     </br>
 <% end %>
-
+<%= link_to '楽曲の新規作成', new_track_path %>
 <p> <%= link_to '楽曲一覧', tracks_path %> </p>
 
 <h2> 作成プレイリスト一覧 </h2>
@@ -36,7 +40,7 @@
     </br>
 <% end %>
 
-
+<%= link_to 'プレイリストの新規作成', new_playlist_path %>
 <p> <%= link_to 'プレイリスト一覧', playlists_path %> </p>
 
 <p><%= link_to 'topページに戻る', root_path %></p>

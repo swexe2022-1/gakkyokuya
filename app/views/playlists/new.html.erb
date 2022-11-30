@@ -1,3 +1,12 @@
+<% if @playlist.errors.present? %>
+    <h3>エラーがあります。</h3>
+    <ul>
+        <% @playlist.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
 <%= form_for @playlist , url: {action: :create} do |f| %>
     <%= f.label :messeage, 'プレイリスト名' %>
     <%= f.text_field :title %>

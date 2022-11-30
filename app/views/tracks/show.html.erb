@@ -1,3 +1,6 @@
+<% if flash[:notice] %>
+    messeage:<%= flash[:notice] %>
+<% end %>
 
 <br>
     <p>
@@ -22,5 +25,6 @@
 
 
 <p>
-    <%= link_to '新規作成', new_track_path %>
+    <%= link_to '楽曲の新規作成', new_track_path %>
+    <%= link_to 'プレイリストの新規作成', new_playlist_path %>
 </p>

@@ -2,12 +2,12 @@ class BelongingsController < ApplicationController
     def create
         track = Track.find(params[:track_id])
         playlist = Playlist.find(params[:playlist_id])
-        belongings = Belonging.new(track: track, playlist: playlist)
+        @belongings = Belonging.new(track: track, playlist: playlist)
         
-        if belongings.save
-            flash[:success] = "楽曲を作成しました"
+        if @belongings.save
+            flash[:success] = "楽曲を追加しました"
         else
-            flash[:error] = "楽曲の追加に失敗しました"
+            flash[:notice] = "楽曲は重複させられません"
         end
         redirect_to track
     end
