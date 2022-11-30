@@ -21,6 +21,8 @@
     </br>
 <% end %>
 
+<p> <%= link_to '楽曲一覧', tracks_path %> </p>
+
 <h2> 作成プレイリスト一覧 </h2>
 
 <% @playlists.each do |e| %>
@@ -28,7 +30,13 @@
         <p>
             <p> <%= image_tag "/get_playlist_image/#{e.id}" %></p>
             <p>プレイリスト名：<%= e.title %></p>
+            <br><a href="/playlists/<%= e.id%>">詳細</a></br>
             <br><%= link_to '削除', playlist_path(e.id), method: :delete %></br>
         </p>
     </br>
 <% end %>
+
+
+<p> <%= link_to 'プレイリスト一覧', playlists_path %> </p>
+
+<p><%= link_to 'topページに戻る', root_path %></p>

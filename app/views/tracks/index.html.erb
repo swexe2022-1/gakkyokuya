@@ -12,9 +12,18 @@
     </br>
 <% end %>
 
-<p>
-    <%= link_to '新規作成', new_track_path %>
-</p>
+<div>
+  <% if current_user %>
+    <%= link_to '楽曲の新規作成', new_track_path %>
+  <% else %>
+      楽曲の作成にはログインが必要です
+      <%= link_to 'ログイン', login_path %>
+  <% end %>
+</div>
 
+
+<p>
+    <%= link_to 'topページに戻る', root_path %>
+</p>
 
 

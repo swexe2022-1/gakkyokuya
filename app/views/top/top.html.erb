@@ -1,7 +1,15 @@
 <h1> Top </1>
 
-<p> <%= link_to '新規登録', signin_path %> </p>
+<div>
+  <% if current_user %>
+    <%= link_to 'マイページ', user_path(current_user.id) %>
+  <% else %>
+      <%= link_to '新規登録', signin_path %>
+      <%= link_to 'ログイン', login_path %>
+  <% end %>
+</div>
 
-<p> <%= link_to 'ログイン', login_path %> </p>
 
+<p> <%= link_to '楽曲一覧', tracks_path %> </p>
+<p> <%= link_to 'プレイリスト一覧', playlists_path %> </p>
 <!-- TODO: 都度追加-->
