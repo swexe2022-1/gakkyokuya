@@ -1,14 +1,11 @@
-<% @playlists.each do |e| %>
-    <br>
-        <p>
-            <p> <%= image_tag "/get_playlist_image/#{e.id}" %></p>
-            <p>プレイリスト名：<%= e.title %></p>
-            <br><a href="/playlists/<%= e.id%>">詳細</a></br>
-            <br><%= link_to 'プレイリストの削除', playlist_path(e.id), method: :delete %></br>
-        </p>
-    </br>
-<% end %>
+<div class='text-right'>
+  <%= link_to 'プレイリストを作成', new_playlist_path, class: 'btn btn-warning' %>
+</div>
 
-<p>
-    <%= link_to 'プレイリストの新規作成', new_playlist_path %>
-</p>
+<% @playlists.each_slice(4) do |slice_playlists| %>
+  <div class='row'>
+    <% slice_playlists.each do |t| %>
+      <%= render 'playlists/playlist', playlist: t %>
+    <% end %>
+  </div>
+<% end %>

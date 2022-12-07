@@ -1,41 +1,36 @@
+<div class="card mb-3 bg-black border-white" style="width: 100%; height: 600;">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <%= image_tag "/get_playlist_image/#{@playlist.id}", height: 600, width: 600, class: 'rounded-start' %>
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h4 class="card-title"><%= @playlist.title %></h4>
+        <h5 class="card-title"><%= @playlist.user.name %></h5>
+        
+        <% @tracks.each do |track| %>
+          <div class="card mb-3 bg-black border-white" style="width: 100%;">
+            <div class="row g-0">
+              <div class="col-md-3">
+                <%= image_tag "/get_track_image/#{track.id}", height: 150, width: 150, class: 'rounded-start' %>
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <p class="card-text"><strong><%= track.title %> </strong>| <%= track.user.name %></p>
+                  <audio src= "<%= "#{track.mp3}" %>" controls="" style="width: 100%">
+                    <p>音声を再生するには、audioタグをサポートしたブラウザが必要です。</p>
+                  </audio>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br><%= link_to 'プレイリストから削除', "#{params[:id]}/remove_track?track_id=#{track.id}", method: :post%></br>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <br>
-        <p>
-
-            
-            <p> <%= image_tag "/get_playlist_image/#{@playlist.id}" %></p>
-
-            
-            <p>プレイリスト名：<%= @playlist.title %></p>
-            
-            <p>楽曲一覧:</p>
-            
-            <% @tracks.each do |e| %>
-                <br>
-                    <p>
-                        <p> <%= image_tag "/get_track_image/#{e.id}" %></p>
-                        <p>楽曲名：<%= e.title %></p>
-                        <P>説明：<%= e.description %></P>
-                        <audio src= "<%= "#{e.mp3}" %>" controls="">
-                        <p>音声を再生するには、audioタグをサポートしたブラウザが必要です。</p>
-                        </audio>
-                        <br><%= link_to 'プレイリストから削除', "#{params[:id]}/remove_track?track_id=#{e.id}", method: :post%></br>
-
-
-                    </p>
-                </br>
-            <% end %>
-            
-            <p>楽曲の追加</p>
-            <%= form_tag "#{params[:id]}/add_track", method: :post do %>
-                <p>
-                    <%= label_tag :track_id, "楽曲ID"%>
-                    <%= number_field_tag :track_id %>
-                </p>
-                <%= submit_tag '追加' %>
-            <%end %>
-            
-            <br><%= link_to '削除', playlist_path(@playlist.id), method: :delete %></br>
-            <%= button_to "戻る", { :action => "index" }, :method => "get" %>
-        </p>
-    </br>
+<% if @playlist.user == current_user %>
+  <%= link_to 'プレイリストを削除', playlist_path(@playlist.id), method: :delete, class: 'btn btn-danger' %>
+<% end %>

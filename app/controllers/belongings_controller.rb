@@ -9,6 +9,6 @@ class BelongingsController < ApplicationController
         else
             flash[:notice] = "楽曲は重複させられません"
         end
-        redirect_to track
+        redirect_to playlist
     end
 end

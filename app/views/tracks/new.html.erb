@@ -7,18 +7,29 @@
     </ul>
 <% end %>
 
-<%= form_for @track , url: {action: :create} do |f| %>
-    <%= f.label :messeage, 'title' %>
-    <%= f.text_field :title %>
-    
-    <%= f.label :mp3, '音楽ファイル' %>
-    <%= f.file_field :mp3 %>
-    
-    <%= f.label :description, '説明' %>
-    <%= f.text_field :description %>
-    
-    <%= f.label :thumbnail, 'サムネイル' %>
-    <%= f.file_field :thumbnail %>
-    
-    <%= f.submit '登録' %>
+<%= form_with model: @track do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, 'タイトル', class: "form-label" %>
+    <span class='badge bg-danger'>必須</span>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :mp3, '音楽ファイル', class: "form-label" %>
+    <span class='badge bg-danger'>必須</span>
+    <%= f.file_field :mp3, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3"> 
+    <%= f.label :thumbnail, 'サムネイル', class: "form-label" %>
+    <span class='badge bg-danger'>必須</span>
+    <%= f.file_field :thumbnail, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3"> 
+    <%= f.label :description, '説明', class: "form-label" %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+  
+  <%= f.submit 'アップロード', class:"btn btn-primary" %>
 <% end %>

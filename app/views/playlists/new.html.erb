@@ -1,16 +1,15 @@
-<% if @playlist.errors.present? %>
-    <h3>エラーがあります。</h3>
-    <ul>
-        <% @playlist.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-    </ul>
-<% end %>
+<%= form_with model: @playlist do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, 'プレイリスト名', class: "form-label" %>
+    <span class='badge bg-danger'>必須</span>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
 
-<%= form_for @playlist , url: {action: :create} do |f| %>
-    <%= f.label :messeage, 'プレイリスト名' %>
-    <%= f.text_field :title %>
-    <%= f.label :thumbnail, 'サムネイル' %>
-    <%= f.file_field :thumbnail %>
-    <%= f.submit '登録' %>
+  <div class="mb-3"> 
+    <%= f.label :thumbnail, 'サムネイル', class: "form-label" %>
+    <span class='badge bg-danger'>必須</span>
+    <%= f.file_field :thumbnail, class: 'form-control' %>
+  </div>
+  
+  <%= f.submit '登録', class:"btn btn-primary" %>
 <% end %>

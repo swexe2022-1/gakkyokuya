@@ -1,0 +1,6 @@
+<div class="card m-3 px-0 bg-black border-light" style="width: 230px;">
+  <%= image_tag "/get_track_image/#{track.id}", height: 200, style: "object-fit: cover", class: "card-img-top" %>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to track.title, track, style: 'text-decoration: none; color: white;' %></h5>
+  </div>
+</div>
