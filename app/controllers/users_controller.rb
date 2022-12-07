@@ -12,14 +12,15 @@ class UsersController < ApplicationController
   end
   
   def create
-    user = User.new(name: params[:user][:name], 
-                    email: params[:user][:email],
-                    password_digest:  BCrypt::Password.create(params[:user][:password]))
-    if user.save!
-      session[:login_user_id] = user.id
-      redirect_to user
+    @user = User.new(name: params[:name], 
+                    email: params[:email],
+                    password_digest:  BCrypt::Password.create(params[:password]))
+    if @user.save
+      flash[:notice] = '登録しました'
+      session[:login_user_id] = @user.id
+      redirect_to @user
     else
-      render 'shared/error'
+      render new_user_path
     end
   end
 end

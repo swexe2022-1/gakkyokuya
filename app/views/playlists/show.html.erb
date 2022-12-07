@@ -34,12 +34,3 @@
 <% if @playlist.user == current_user %>
   <%= link_to 'プレイリストを削除', playlist_path(@playlist.id), method: :delete, class: 'btn btn-danger' %>
 <% end %>
-
-<p>楽曲の追加</p>
-<%= form_tag "#{params[:id]}/add_track", method: :post do %>
-  <p>
-    <%= label_tag :track_id, "楽曲ID"%>
-    <%= number_field_tag :track_id %>
-  </p>
-  <%= submit_tag '追加' %>
-<%end %>
