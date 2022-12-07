@@ -9,6 +9,6 @@ class BelongingsController < ApplicationController
         else
             flash[:error] = "楽曲の追加に失敗しました"
         end
-        redirect_to track
+        redirect_to playlist
     end
 end

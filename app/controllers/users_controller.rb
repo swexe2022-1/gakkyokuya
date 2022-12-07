@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   end
   
   def create
-    user = User.new(name: params[:name], 
-                    email: params[:email],
-                    password_digest:  BCrypt::Password.create(params[:password]))
+    user = User.new(name: params[:user][:name], 
+                    email: params[:user][:email],
+                    password_digest:  BCrypt::Password.create(params[:user][:password]))
     if user.save!
       session[:login_user_id] = user.id
       redirect_to user

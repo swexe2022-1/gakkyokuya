@@ -1,15 +1,25 @@
-<h1> Top </1>
 
-<div>
-  <% if current_user %>
-    <%= link_to 'マイページ', user_path(current_user.id) %>
-  <% else %>
-      <%= link_to '新規登録', signin_path %>
-      <%= link_to 'ログイン', login_path %>
-  <% end %>
-</div>
+<h3>最近追加された楽曲</h3>
+
+<% Track.last(12).each_slice(4) do |slice_tracks| %>
+  <div class='row'>
+    <% slice_tracks.each do |t| %>
+      <%= render 'tracks/track', track: t %>
+    <% end %>
+  </div>
+<% end %>
+
+<p> <%= link_to 'もっと見る', tracks_path, style: 'color: white;' %> </p>
 
 
-<p> <%= link_to '楽曲一覧', tracks_path %> </p>
-<p> <%= link_to 'プレイリスト一覧', playlists_path %> </p>
-<!-- TODO: 都度追加-->
+<h3>最近追加されたプレイリスト</h3>
+
+<% Playlist.last(12).each_slice(4) do |slice_playlists| %>
+  <div class='row'>
+    <% slice_playlists.each do |t| %>
+      <%= render 'playlists/playlist', playlist: t %>
+    <% end %>
+  </div>
+<% end %>
+
+<p> <%= link_to 'もっと見る', playlists_path, style: 'color: white;' %> </p>

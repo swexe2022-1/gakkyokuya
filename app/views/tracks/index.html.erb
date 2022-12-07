@@ -1,29 +1,11 @@
-<% @tracks.each do |e| %>
-    <br>
-        <p>
-            <p> <%= image_tag "/get_track_image/#{e.id}" %></p>
-            <p>楽曲名：<%= e.title %></p>
-            <% if e.description.present?  %>
-                <p>説明：<%= e.description %></p>
-            <% end %>
-            <br><a href="/tracks/<%= e.id%>">詳細</a></br>
-            <br><%= link_to '削除', track_path(e.id), method: :delete %></br>
-        </p>
-    </br>
-<% end %>
-
-<div>
-  <% if current_user %>
-    <%= link_to '楽曲の新規作成', new_track_path %>
-  <% else %>
-      楽曲の作成にはログインが必要です
-      <%= link_to 'ログイン', login_path %>
-  <% end %>
+<div class='text-right'>
+  <%= link_to '楽曲をアップロード', new_track_path, class: 'btn btn-warning' %>
 </div>
 
-
-<p>
-    <%= link_to 'topページに戻る', root_path %>
-</p>
-
-
+<% @tracks.each_slice(4) do |slice_tracks| %>
+  <div class='row'>
+    <% slice_tracks.each do |t| %>
+      <%= render 'tracks/track', track: t %>
+    <% end %>
+  </div>
+<% end %>
