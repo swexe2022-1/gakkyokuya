@@ -19,7 +19,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(user: current_user, title: params[:playlist][:title],thumbnail: params[:playlist][:thumbnail]&.read)
 
     if @playlist.save
-      flash[:notice] = 'プレイリストを作成しました'
+      flash[:success] = 'プレイリストを作成しました'
       redirect_to current_user
     else
       render new_playlist_path
@@ -31,6 +31,8 @@ class PlaylistsController < ApplicationController
     track = Track.find(params[:track_id])
     
     playlist.tracks << track
+    
+    flash[:success] = 'プレイリストに楽曲を追加しました'
     redirect_to playlist
   end
   
@@ -44,13 +46,16 @@ class PlaylistsController < ApplicationController
     track = Track.find(params[:track_id])
     
     playlist.tracks.delete(track)
+    
+    flash[:success] = 'プレイリストから楽曲を削除しました'
     redirect_to playlist
-  
   end
   
   def destroy
     playlist = Playlist.find(params[:id])
     playlist.destroy
+    
+    flash[:success] = 'プレイリストを削除しました'
     redirect_to playlists_path
   end
   

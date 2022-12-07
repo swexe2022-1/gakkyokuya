@@ -19,7 +19,7 @@ class TracksController < ApplicationController
     @track = Track.new(user: current_user, title: params[:track][:title], mp3: params[:track][:mp3], description: params[:track][:description], thumbnail: params[:track][:thumbnail]&.read)
 
     if @track.save
-      flash[:notice] = '楽曲を追加しました'
+      flash[:success] = '楽曲を追加しました'
       redirect_to current_user
     else
       render new_track_path
@@ -29,8 +29,8 @@ class TracksController < ApplicationController
   def destroy
     @track = Track.find(params[:id])
 
+    flash[:success] = '楽曲を削除しました'
     redirect_to tracks_path
-
   end
   
   def get_track_image

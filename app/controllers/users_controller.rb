@@ -16,10 +16,11 @@ class UsersController < ApplicationController
                     email: params[:email],
                     password_digest:  BCrypt::Password.create(params[:password]))
     if @user.save
-      flash[:notice] = '登録しました'
+      flash[:success] = '登録しました'
       session[:login_user_id] = @user.id
       redirect_to @user
     else
+      flash[:danger] = '登録に失敗しました'
       render new_user_path
     end
   end

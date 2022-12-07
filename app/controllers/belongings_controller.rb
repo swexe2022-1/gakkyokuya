@@ -7,7 +7,7 @@ class BelongingsController < ApplicationController
         if @belongings.save
             flash[:success] = "楽曲を追加しました"
         else
-            flash[:notice] = "楽曲は重複させられません"
+            flash[:danger] = "楽曲は重複させられません"
         end
         redirect_to playlist
     end

@@ -7,7 +7,7 @@
       <div class="card-body">
         <h4 class="card-title"><%= @playlist.title %></h4>
         <h5 class="card-title"><%= @playlist.user.name %></h5>
-        
+
         <% @tracks.each do |track| %>
           <div class="card mb-3 bg-black border-white" style="width: 100%;">
             <div class="row g-0">
@@ -20,11 +20,11 @@
                   <audio src= "<%= "#{track.mp3}" %>" controls="" style="width: 100%">
                     <p>音声を再生するには、audioタグをサポートしたブラウザが必要です。</p>
                   </audio>
+                  <%= link_to 'プレイリストから削除', "#{params[:id]}/remove_track?track_id=#{track.id}", method: :post%>
                 </div>
               </div>
             </div>
           </div>
-          <br><%= link_to 'プレイリストから削除', "#{params[:id]}/remove_track?track_id=#{track.id}", method: :post%></br>
         <% end %>
       </div>
     </div>

@@ -9,12 +9,15 @@ class SessionsController < ApplicationController
       log_in(user.id)
       redirect_to user
     else
-      render 'shared/error'
+      flash[:danger] = 'メールアドレス または パスワード が違います'
+      redirect_to login_path
     end
   end
 
   def destroy
     log_out
+    
+    flash[:success] = 'ログアウトしました'
     redirect_to root_path
   end
 end

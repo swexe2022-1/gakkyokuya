@@ -4,7 +4,7 @@ module LogInConcern
   def logged_in
     return if logged_in?
 
-    flash[:danger] = 'Please log in.'
+    flash[:danger] = 'ログインしてください'
     redirect_to login_path
   end
 end
