@@ -9,6 +9,13 @@ class PlaylistsController < ApplicationController
   def show
     @playlist = Playlist.find(params[:id])
     @tracks = Playlist.find(params[:id]).tracks
+    
+    if params[:current_play].blank?
+      @current_play_index = 0
+    else
+      @current_play_index = params[:current_play].to_i
+    end
+    @current_play= @tracks[@current_play_index]
   end
   
   def new
