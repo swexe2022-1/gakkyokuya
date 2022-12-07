@@ -2,7 +2,7 @@
   <%= link_to '楽曲をアップロード', new_track_path, class: 'btn btn-warning' %>
 </div>
 
-<% @tracks.each_slice(4) do |slice_tracks| %>
+<% @tracks.each_slice(5) do |slice_tracks| %>
   <div class='row'>
     <% slice_tracks.each do |t| %>
       <%= render 'tracks/track', track: t %>

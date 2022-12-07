@@ -28,6 +28,7 @@ class TracksController < ApplicationController
   
   def destroy
     @track = Track.find(params[:id])
+    @track.destroy
 
     flash[:success] = '楽曲を削除しました'
     redirect_to tracks_path

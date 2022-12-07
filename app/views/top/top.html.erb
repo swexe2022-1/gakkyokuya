@@ -1,6 +1,6 @@
 <h3>最近追加された楽曲</h3>
 
-<% Track.last(12).each_slice(4) do |slice_tracks| %>
+<% Track.last(10).each_slice(5) do |slice_tracks| %>
   <div class='row'>
     <% slice_tracks.each do |t| %>
       <%= render 'tracks/track', track: t %>
@@ -13,7 +13,7 @@
 
 <h3>最近追加されたプレイリスト</h3>
 
-<% Playlist.last(12).each_slice(4) do |slice_playlists| %>
+<% Playlist.last(10).each_slice(5) do |slice_playlists| %>
   <div class='row'>
     <% slice_playlists.each do |t| %>
       <%= render 'playlists/playlist', playlist: t %>

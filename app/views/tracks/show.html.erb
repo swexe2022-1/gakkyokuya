@@ -6,7 +6,7 @@
     <div class="col-md-6">
       <div class="card-body">
         <h4 class="card-title"><%= @track.title %></h4>
-        <h5 class="card-title"><%= @track.user.name %></h5>
+        <h5 class="card-title">製作者：<%= @track.user.name %></h5>
         <p class="card-text"><%= @track.description %></p>
 
         <% if current_user %>

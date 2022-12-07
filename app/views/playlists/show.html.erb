@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <% if @tracks.blank? %>
           <p>プレイリストに楽曲を追加してください</p>
-          <%= link_to '楽曲一覧', tracks_path, style: 'color: white;'  %>
+          <p> <%= link_to '楽曲一覧', tracks_path, class: 'btn btn-warning' %> </p>
       <% else %>
           <%= image_tag "/get_track_image/#{@current_play.id}", height: 600, width: 600, class: 'rounded-start' %>
           <audio src= "<%= "#{@current_play.mp3}" %>" controls="" style="width: 600px; margin-top: 10px;">
@@ -31,7 +31,7 @@
     <div class="col-md-6">
       <div class="card-body">
         <h4 class="card-title"><%= @playlist.title %></h4>
-        <h5 class="card-title"><%= @playlist.user.name %></h5>
+        <h5 class="card-title">製作者：<%= @playlist.user.name %></h5>
 
         <% @tracks.each do |track| %>
           <div class="card mb-3 bg-black border-white" style="width: 100%;">

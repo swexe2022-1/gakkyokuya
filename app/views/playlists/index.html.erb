@@ -2,7 +2,7 @@
   <%= link_to 'プレイリストを作成', new_playlist_path, class: 'btn btn-warning' %>
 </div>
 
-<% @playlists.each_slice(4) do |slice_playlists| %>
+<% @playlists.each_slice(5) do |slice_playlists| %>
   <div class='row'>
     <% slice_playlists.each do |t| %>
       <%= render 'playlists/playlist', playlist: t %>

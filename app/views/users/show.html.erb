@@ -2,9 +2,13 @@
 
 <h2><%= @user.name %></h2>
 
-<h5> アップロード楽曲一覧 </h5>
+<div class="d-flex justify-content-between p-3">
+  <h5> アップロード楽曲一覧 </h5>
+  <%= link_to '楽曲をアップロード', new_track_path, class: 'btn btn-warning' %>
+</div>  
 
-<% @tracks.each_slice(4) do |slice_tracks| %>
+
+<% @tracks.each_slice(5) do |slice_tracks| %>
   <div class='row'>
     <% slice_tracks.each do |t| %>
       <%= render 'tracks/track', track: t %>
@@ -12,9 +16,12 @@
   </div>
 <% end %>
 
-<h5> 作成プレイリスト一覧 </h5>
+<div class="d-flex justify-content-between p-3">
+  <h5> 作成プレイリスト一覧  </h5>
+  <%= link_to 'プレイリストを作成', new_playlist_path, class: 'btn btn-warning' %>
+</div>  
 
-<% @playlists.each_slice(4) do |slice_playlists| %>
+<% @playlists.each_slice(5) do |slice_playlists| %>
   <div class='row'>
     <% slice_playlists.each do |t| %>
       <%= render 'playlists/playlist', playlist: t %>
