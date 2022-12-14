@@ -9,7 +9,7 @@ User.all.each do |user|
   name = user.email.split("@")[0]
   1.upto(5) do |i|
     title = "楽曲_#{name}_#{i}"
-    Track.create!(user: user, 
+    Track.create!(user_id: user.id, 
                   title: title, 
                   mp3: File.open("./db/seed_data/music/#{name}.mp3"), 
                   description: "楽曲の説明楽曲の説明楽曲の説明楽曲の説明楽曲の説明楽曲の説明楽曲の説明楽曲の説明楽曲の説明楽曲の説明", 
@@ -18,7 +18,7 @@ User.all.each do |user|
   
   1.upto(2) do |i|
     title = "プレイリスト_#{name}_#{i}"
-    playlist = Playlist.create!(user: user, 
+    playlist = Playlist.create!(user_id: user.id, 
                                 title: title,
                                 thumbnail: File.open("./db/seed_data/image/#{title}.jpg").read)
   end
