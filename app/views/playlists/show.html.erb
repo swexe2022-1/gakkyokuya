@@ -65,3 +65,7 @@
   <%= link_to '楽曲一覧', tracks_path, class: 'btn btn-warning' %> </p>
   <%= link_to 'プレイリストを削除', playlist_path(@playlist.id), method: :delete, class: 'btn btn-danger' %>
 <% end %>
+
+<div class='text-right'>
+  <p onclick='navigator.clipboard.writeText("<%= request.url %>")' style='cursor: pointer;' class='btn btn-warning'> 共有URLをコピー </p>
+</div>
