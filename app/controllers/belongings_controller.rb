@@ -4,11 +4,14 @@ class BelongingsController < ApplicationController
         playlist = Playlist.find(params[:playlist_id])
         @belongings = Belonging.new(track: track, playlist: playlist)
         
-        if @belongings.save
+        begin
+            @belongings.save!
             flash[:success] = "楽曲を追加しました"
-        else
+            redirect_to playlist
+        rescue
             flash[:danger] = "楽曲は重複させられません"
+            redirect_to tracks_path
         end
-        redirect_to playlist
+        
     end
 end

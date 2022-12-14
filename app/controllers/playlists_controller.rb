@@ -29,7 +29,8 @@ class PlaylistsController < ApplicationController
       flash[:success] = 'プレイリストを作成しました'
       redirect_to current_user
     else
-      render new_playlist_path
+      flash[:danger] = 'プレイリストを作成しました'
+      redirect_to new_playlist_path
     end
   end
   
@@ -37,10 +38,13 @@ class PlaylistsController < ApplicationController
     playlist = Playlist.find(params[:id])
     track = Track.find(params[:track_id])
     
-    playlist.tracks << track
-    
-    flash[:success] = 'プレイリストに楽曲を追加しました'
-    redirect_to playlist
+    if playlist.tracks << track
+      
+      flash[:success] = 'プレイリストに楽曲を追加しました'
+      redirect_to playlist
+    else
+      flash[:danger] = "楽曲は重複させられません"
+    end
   end
   
   def get_playlist_image
