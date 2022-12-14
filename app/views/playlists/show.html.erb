@@ -2,8 +2,15 @@
   <div class="row g-0">
     <div class="col-md-6">
       <% if @tracks.blank? %>
-          <p>プレイリストに楽曲を追加してください</p>
-          <p> <%= link_to '楽曲一覧', tracks_path, class: 'btn btn-warning' %> </p>
+          <% if @playlist.user == current_user %>
+            <p>プレイリストに楽曲を追加してください</p>
+            <p> <%= link_to '楽曲一覧', tracks_path, class: 'btn btn-warning' %> </p>
+          <% else %>
+            <P>このプレイリストには楽曲がありません</P>
+            <p> <%= link_to '戻る', :back, class: 'btn btn-warning' %> </p>
+          <% end %>
+
+
       <% else %>
           <%= image_tag "/get_track_image/#{@current_play.id}", height: 600, width: 600, class: 'rounded-start' %>
           <audio src= "<%= "#{@current_play.mp3}" %>" controls="" style="width: 600px; margin-top: 10px;">
@@ -54,5 +61,7 @@
 </div>
 
 <% if @playlist.user == current_user %>
+  <p>プレイリストに楽曲を追加：　
+  <%= link_to '楽曲一覧', tracks_path, class: 'btn btn-warning' %> </p>
   <%= link_to 'プレイリストを削除', playlist_path(@playlist.id), method: :delete, class: 'btn btn-danger' %>
 <% end %>
