@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :logged_in, only: %i[new create destroy add_track]
-  before_action :correct_user, only: %i[destroy]
+  before_action :correct_user, only: %i[destroy remove_track add_track]
 
   def index
     @playlists = Playlist.all
