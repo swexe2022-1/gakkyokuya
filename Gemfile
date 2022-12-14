@@ -12,7 +12,7 @@ gem 'pg', '0.21.0', group: :production
 gem 'puma', '~> 3.11'
 
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'terser'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
